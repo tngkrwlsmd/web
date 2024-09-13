@@ -1,5 +1,5 @@
 <?php
-  echo "<br><br> Apache 서버와 관련된 환경변수 <\b><hr>";
+  echo "<br><b> Apache 서버와 관련된 환경변수 <\b><hr>";
   echo "1. 서버이름 [<b>" . $_SERVER ['SERVER_NAME'] . "<\b>]<br>";
   echo "2. 서버의 프로토콜 [<b>" . $_SERVER ['SERVER_PROTOCOL'] . "<\b>]<br>";
   echo "3. 서버의 포트번호 [<b>" . $_SERVER ['SERVER_PORT'] . "<\b>]<br>";
