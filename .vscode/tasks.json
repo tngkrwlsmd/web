@@ -1,0 +1,10 @@
+{
+  "version": "2.0.0",
+  "command": "whale",
+  "windows": {
+    "command": "C:/Program Files/Naver/Naver Whale/Application/whale.exe"
+  },
+  "args": [
+    "localhost/psn"
+  ]
+}
