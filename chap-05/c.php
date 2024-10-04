@@ -1,13 +1,17 @@
 <?php
-  $inPassword = $_POST["pw"];
+  if(isset($_POST["pw"])) {
+    $inPassword = $_POST["pw"];
+  } else {
+    $inPassword = "";
+  }
 
   echo $inPassword, "<br>";
-  echo $cryptInPassword = crypt($inPassword, '');
+  $cryptInPassword = crypt($inPassword, 'ab');
   echo $cryptInPassword, "<br>";
 
   //db에서 가져옴
   $savePassword = "abcde";
-  $cryptPassword = crypt($savePassword, '');
+  $cryptPassword = crypt($savePassword, 'ab');
   echo $cryptPassword, "<br>";
   echo "<hr>";
   if ($cryptInPassword == $cryptPassword) {
