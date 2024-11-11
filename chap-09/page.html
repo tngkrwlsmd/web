@@ -1,0 +1,84 @@
+<html>
+  <body>
+    <form id="formMain" name="formMain">
+      <input type="text" id="myInput" name="myInput" value="abc"/>
+      <input type="button" value=">>" onclick="runCalc()"/> <br>
+      <input type="text" id="myOutput" name="myOutput"/> <br>
+      <input type="checkbox" id="clear" name="clear"/>
+      <label for="clear"> clear</label>
+      <input type="radio" id="radioRed" name="radioColor" value="Red"/>
+      <label for="radioRed"> Red</label>
+      <input type="radio" id="radioBlue" name="radioColor" value="Blue"/>
+      <label for="radioBlue"> Blue</label>
+    </form> <hr>
+    <script>
+      function runCalc() {
+        /*
+        let input = document.getElementById('myInput')
+        let val = input.value
+        let defaultVal = input.defaultValue // 기본 입력값
+        if (val == defaultVal) {
+          if (confirm('기본 입력값에 변화가 없습니다. 그대로 진행할까요?')) {
+            document.getElementById('myOutput').value = defaultVal
+            return
+          }
+        }
+        document.formMain.myOutput.value = defaultVal; */
+
+        let input = document.getElementById('myInput')
+        let output = document.getElementById('myOutput')
+        let val = input.value
+        // output.value = val
+        output.value = eval(val)
+        input.focus()
+        input.select() // 전체 선택
+        // input.setSelectionRange(0,3) // 구간 선택
+
+        let checkIn = document.getElementById('clear')
+        if (checkIn.checked) input.value=""
+        else input.select()
+
+        let colors = document.getElementsByName('radioColor') // radioColor 배열을 가져옴
+        colors.forEach((node) => {
+          if (node.checked) {
+            document.getElementById('myOutput').style.color = node.value;
+          }
+        });
+      }
+    </script>
+
+    <form>
+      <input type="text" id="output" name="output" readonly/> <br>
+      <input type="button" value="1" onclick="runCalc2('1')"/>
+      <input type="button" value="2" onclick="runCalc2('2')"/>
+      <input type="button" value="3" onclick="runCalc2('3')"/>
+      <input type="button" value="+" onclick="runCalc2('+')"/> <br>
+      <input type="button" value="4" onclick="runCalc2('4')"/>
+      <input type="button" value="5" onclick="runCalc2('5')"/>
+      <input type="button" value="6" onclick="runCalc2('6')"/>
+      <input type="button" value="-" onclick="runCalc2('-')"/> <br>
+      <input type="button" value="7" onclick="runCalc2('7')"/>
+      <input type="button" value="8" onclick="runCalc2('8')"/>
+      <input type="button" value="9" onclick="runCalc2('9')"/> 
+      <input type="button" value="*" onclick="runCalc2('*')"/> <br>
+      <input type="button" value="C" onclick="runCalc2('C')"/>
+      <input type="button" value="0" onclick="runCalc2('0')"/>
+      <input type="button" value="=" onclick="runCalc2('=')"/>
+      <input type="button" value="/" onclick="runCalc2('/')"/>
+    </form>
+
+    <script>
+      function runCalc2(params) {
+        if (params == 'C') {
+          document.getElementById('output').value=''
+        } else if (params == '=') {
+          let val = document.getElementById('output').value
+          document.getElementById('output').value = eval(val)
+        }
+        else {
+          document.getElementById('output').value += params
+        }
+      }
+    </script>
+  </body>
+</html>
