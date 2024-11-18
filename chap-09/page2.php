@@ -3,6 +3,7 @@
     table, td, th {
       border: 1px solid black;
       border-collapse: collapse;
+      cursor: pointer;
     }
     th {
       background-color: gray;
@@ -22,6 +23,25 @@
       $db = mysqli_select_db($conn, "sample01_db"); // 서버 내에서 DB 선택
 
       if ($db) {
+        //저장
+        if  (isset($_POST['ID'])) {
+          $id = $_POST['ID'];
+          $name = $_POST['Name'];
+          $gender = $_POST['Gender'];
+          $age = $_POST['Age'];
+          $point = $_POST['Point'];
+          $email = $_POST['Email'];
+
+          $query = "UPDATE guest SET 
+          name = '$name',
+          gender = '$gender',
+          age = $age,
+          point = $point,
+          email = '$email'
+          WHERE id = '$id'";
+          $result = mysqli_query($conn, $query);
+        }
+        //실행
         $query = "SELECT * FROM guest"; // guest 테이블의 모든 내용을 가져옴
         $result = mysqli_query($conn, $query); // 쿼리를 실행하여 $result 변수에 저장
 
@@ -57,6 +77,16 @@
   ?>
 
   <script>
+    // 테이블 행 단위로 클릭되면 아래 runSelect() 호출
+    let table = document.getElementById('tableID');
+    table.addEventListener('click', (event) => {
+      let clickRow = event.target.closest('tr')
+      let rowList = Array.from(table.rows) // 컬렉션을 배열로 반환
+      let index = rowList.indexOf(clickRow) // 클릭한 행의 인덱스를 반환
+      runSelect(index)
+    })
+
+    // 선택 버튼을 클릭하면 호출되는 함수
     function runSelect(num) {
       let table = document.getElementById('tableID');
       let rowList = table.rows // 행 개수를 가져옴
@@ -78,7 +108,12 @@
       let point = document.getElementById('Point').value
       if (mode == 0) point++
       else point--
-      document.getElementById('point').value = point
+      document.getElementById('Point').value = point
+    }
+
+    function runSubmit() {
+      let formMain = document.getElementById('formMain')
+      formMain.submit()
     }
   </script>
 
