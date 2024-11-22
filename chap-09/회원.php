@@ -100,10 +100,10 @@
     let pw = document.getElementById('pw')
     let pwCheck = document.getElementById('pw2')
 
-    if (pw != pwCheck) {
+    /* if (pw != pwCheck) {
       alert("비밀번호가 일치하지 않습니다.")
       return
-    }
+    } */
 
     document.getElementById('formMain').submit()
   }
