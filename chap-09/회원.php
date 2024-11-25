@@ -26,19 +26,19 @@
         }
 
         $query = "SELECT * FROM member";
-          $result = mysqli_query($conn, $query);
-          $cols = mysqli_num_fields($result);
-          echo "<table id='tableMain' border=1>";
-          echo "<tr><td>ID</td><td>이름</td><td>비밀번호</td><td>핸드폰</td><td>성별</td><td>주소</td><td>메모</td></tr>";
-          while ($row = mysqli_fetch_row($result)) {
-            echo "<tr>";
-            for ($i = 0; $i < $cols; $i++) {
-              echo "<td> ", $row[$i], "</td>";
-            }
-            echo "</tr>";
+        $result = mysqli_query($conn, $query);
+        $cols = mysqli_num_fields($result);
+        echo "<table id='tableMain' border=1>";
+        echo "<tr><td>ID</td><td>이름</td><td>비밀번호</td><td>핸드폰</td><td>성별</td><td>주소</td><td>메모</td></tr>";
+        while ($row = mysqli_fetch_row($result)) {
+          echo "<tr>";
+          for ($i = 0; $i < $cols; $i++) {
+            echo "<td> ", $row[$i], "</td>";
           }
-          echo "</table>";
-          mysqli_free_result($result);
+          echo "</tr>";
+        }
+        echo "</table>";
+        mysqli_free_result($result);
       }
     }
 
