@@ -79,12 +79,7 @@
       document.getElementById('memo').value = rowList[index].cells[6].innerText
 
       let radioGender = rowList[index].cells[4].innerText
-      if (radioGender == 0) radioGender = "0"
-      else radioGender = "1"
-      let radioButton = document.querySelector(`input[name="Gender"][value="${radioGender}"]`)
-      if (radioButton) {
-        radioButton.checked = true
-      }
+      document.getElementById('Gender' + radioGender).checked = true
     }
 
     /* let selPhone = document.getElementById('phone1') // p1 이지만, option 말고도 다른 방법이 존재함을 알려줌
@@ -162,8 +157,8 @@
 
             <td align=right> 성별: </td>
             <td>
-            <input type="radio" id="Gender0" name="Gender" value="0"/> 여
-            <input type="radio" id="Gender1" name="Gender" value="1"/> 남
+            <input type="radio" id="Gender 0" name="Gender" value="0"/> 여
+            <input type="radio" id="Gender 1" name="Gender" value="1"/> 남
             </td>
           </tr>
 
