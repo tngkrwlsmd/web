@@ -26,14 +26,16 @@
                 if ($gender == 0) $gender = "여";
                 else $gender == "남";
 
-                echo $_COOKIE['ckID'], "<br>";
+                // echo $_COOKIE['ckID'], "<br>";
                 session_start(); // 세선 시작
-                echo $_SESSION['ssName'], "<br>";
+                // echo $_SESSION['ssName'], "<br>";
+                $photo = $_SESSION['ssPhoto'];
 
                 echo $name, "님 환영합니다.<br>";
                 echo "회원 정보";
                 echo "<table><tr><td>", $id, "</td>";
                 echo "<td>", $name, "</td></tr>";
+                echo "<td colspan=2 ><img src='$photo'></td>";
                 echo "<tr><td>", $mobile, "</td>";
                 echo "<td>", $gender, "</td></tr>";
                 echo "<tr><td colspan=2>", $addr, "</td></tr>";

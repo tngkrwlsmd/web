@@ -48,6 +48,7 @@ if (isset($_POST['id']) && isset($_POST['pw'])) {
                 setcookie("ckID", $row['ID']); // 쿠키 변수 저장, 실제로 DB에 저장된 ID
                 session_start(); # 세선 통신 시작
                 $_SESSION['ssName'] = $row['name']; # ssName이라는 세션 변수에, name 저장
+                $_SESSION['ssPhoto'] = $row['photo'];
                 ?>
                 <script>
                     document.getElementById('goID').value = '<?= $row['ID'] ?>';

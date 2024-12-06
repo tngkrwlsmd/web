@@ -3,7 +3,28 @@
     <title> FROM 태그와 컨트롤 - 회원등록</title>
   </head>
 
+  <?php include "commonFunc.php";?>
+
+  <style>
+    table, td, th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        cursor: pointer;
+    }
+  </style>
+
   <?php
+    $uploadDir = "./image/";
+    if (count($_FILES)) { // 파일이 1개 이상이면
+      $uploadFile = $uploadDir. $_FILES['userfile']['name'];
+      if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)) echo "파일 업로드 성공!";
+      else echo "파일 업로드 실패!";
+
+      echo "<pre>";
+      print_r($_FILES);
+      echo "</pre>";
+    }
+
     $conn = mysqli_connect("localhost", "root", "1234");
 
     if($conn) {
@@ -19,9 +40,10 @@
           $gender = isset($_POST["Gender"]) && $_POST["Gender"] === "0" ? 0 : 1;
           $addr = $_POST["addr"];
           $text = $_POST["memo"];
+          $file = $uploadDir . $_FILES["userfile"]["name"];
 
           $query = "INSERT member VALUES (
-          '$id', '$name', '$pw', '$mobile', '$gender' ,'$addr', '$text')";
+          '$id', '$name', '$pw', '$mobile', '$gender' ,'$addr', '$text', '$file')";
           $result = mysqli_query($conn, $query);
         }
 
@@ -112,7 +134,7 @@
   <body>
     <br><h2><center> 회원등록 화면</center></h2><hr>
 
-    <form method="post" action="" name="formMain" id="formMain">
+    <form method="post" enctype="multipart/form-data" action="" name="formMain" id="formMain">
       <center>
         <table border=0 bordercolor="blue" width=750 cellspacing=1 cellpadding=5>
           <tr>
@@ -124,6 +146,13 @@
             <td width=200 align=right> 성명: </td>
             <td width=300>
               <input type="text" size=10 maxlength=10 name="name" id="name"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td width=450 align=right> 사진: </td>
+            <td colspan=3 width=330>
+              <input type="file" name="userfile" id="userfile"/>
             </td>
           </tr>
           
